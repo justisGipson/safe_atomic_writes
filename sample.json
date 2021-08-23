@@ -1,0 +1,12 @@
+[
+    {
+        "item": "Food_eat",
+        "Food": {
+            "foodNo": 42536216,
+            "type": "fruit",
+            "moreInfo": [
+                "organic"
+            ]
+        }
+    }
+]

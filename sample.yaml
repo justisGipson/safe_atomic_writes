@@ -1,0 +1,6 @@
+- Food:
+    foodNo: 42536216
+    moreInfo:
+    - organic
+    type: fruit
+  item: Food_eat

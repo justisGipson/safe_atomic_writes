@@ -9,11 +9,11 @@ corrupt data, & depending on what the file is used for, bigger issues may arise
 
 what happens in here:
 
-1. - create temp_file in same directory as the file we're trying to create or update. Move operations aren't guaranteed to be atomic when they're between different file systems. Import is set to `delete=False` as the standard behavior of `NamedTemporaryFile` is to delete itself as soon as it's not in use
-2. - need to support file creation and updates - initialize temp_file with the target file's contents and metadata
-3. - the we write or append the file contents to the temp_file and we flush/sync to disk manually to prep for the replace
-4. - `os.replace` is where the magic happens. `os.replace` is an atomic operation (when the source and target are on the same file system), so we're now guaranteed that if this fails to complete, no harm will be done.
-5. - use `finally` to remove temp_file in case something did go wrong. but now, worst-case scenario is we have a temp_file.
+1. create temp_file in same directory as the file we're trying to create or update. Move operations aren't guaranteed to be atomic when they're between different file systems. Import is set to `delete=False` as the standard behavior of `NamedTemporaryFile` is to delete itself as soon as it's not in use
+2. need to support file creation and updates - initialize temp_file with the target file's contents and metadata
+3. the we write or append the file contents to the temp_file and we flush/sync to disk manually to prep for the replace
+4. `os.replace` is where the magic happens. `os.replace` is an atomic operation (when the source and target are on the same file system), so we're now guaranteed that if this fails to complete, no harm will be done.
+5. use `finally` to remove temp_file in case something did go wrong. but now, worst-case scenario is we have a temp_file.
 
 <br>
 
